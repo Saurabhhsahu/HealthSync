@@ -9,17 +9,20 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import { useUser } from "../../context/userContext";
 
 const HealthMonitoring = ({ darkMode }) => {
   // Sample health monitoring data
-  const healthData = [
-    { date: "Feb 20", heartRate: 72, bloodPressure: 120 },
-    { date: "Feb 21", heartRate: 75, bloodPressure: 118 },
-    { date: "Feb 22", heartRate: 78, bloodPressure: 122 },
-    { date: "Feb 23", heartRate: 74, bloodPressure: 119 },
-    { date: "Feb 24", heartRate: 76, bloodPressure: 121 },
-    { date: "Feb 25", heartRate: 73, bloodPressure: 117 },
-  ];
+  // const healthData = [
+  //   { date: "Feb 20", heartRate: 72, bloodPressure: 120 },
+  //   { date: "Feb 21", heartRate: 75, bloodPressure: 118 },
+  //   { date: "Feb 22", heartRate: 78, bloodPressure: 122 },
+  //   { date: "Feb 23", heartRate: 74, bloodPressure: 119 },
+  //   { date: "Feb 24", heartRate: 76, bloodPressure: 121 },
+  //   { date: "Feb 25", heartRate: 73, bloodPressure: 117 },
+  // ];
+  const {profile} = useUser();
+  const healthData = profile?.healthMonitorings || []
 
   return (
     <div className={`rounded-lg shadow-md p-4 ${darkMode ? "bg-gray-800 text-white" : "bg-white text-gray-900"}`}>

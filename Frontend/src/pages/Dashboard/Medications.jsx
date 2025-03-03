@@ -1,36 +1,10 @@
 import React from 'react';
+import {useUser} from '../../context/userContext.jsx'
 
 const Medications = ({ darkMode }) => {
+  const {profile} = useUser();
   // Sample medications data
-  const medications = [
-    { 
-      id: 1, 
-      name: "Metformin", 
-      dosage: "500mg", 
-      frequency: "Twice daily with meals", 
-      startDate: "2023-10-15",
-      refillDate: "2025-03-15",
-      instructions: "Take with food to reduce stomach upset"
-    },
-    { 
-      id: 2, 
-      name: "Lisinopril", 
-      dosage: "10mg", 
-      frequency: "Once daily", 
-      startDate: "2023-12-01",
-      refillDate: "2025-03-01",
-      instructions: "Take in the morning"
-    },
-    { 
-      id: 3, 
-      name: "Atorvastatin", 
-      dosage: "20mg", 
-      frequency: "Once daily", 
-      startDate: "2024-01-10",
-      refillDate: "2025-04-10",
-      instructions: "Take at night"
-    }
-  ];
+  const medications = profile?.medications || []
 
   return (
     <div className={`rounded-lg shadow-md overflow-hidden ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>

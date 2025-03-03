@@ -3,28 +3,13 @@ import {useUser} from '../../context/userContext.jsx';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 const LabReports = ({ darkMode }) => {
-  const {getProfileDetails} = useUser();
-  const [glucoseData,setGlucoseData] = useState('')
+  const {profile} = useUser();
 
   // Sample lab report data
-  const labReports = [
-    { id: 1, test: "Complete Blood Count", date: "2025-02-15", status: "Normal", file: "cbc_report_feb2025.pdf" },
-    { id: 2, test: "Blood Glucose", date: "2025-02-15", status: "Elevated", file: "glucose_feb2025.pdf" },
-    { id: 3, test: "Lipid Profile", date: "2025-01-10", status: "Borderline", file: "lipid_jan2025.pdf" }
-  ];
+  const labReports = profile?.labReports || []
 
-  // Glucose trend data
-  useEffect(() => {
-    const fetchGlucoseData = async () => {
-      const data = await getProfileDetails("glucoseTrends");
-      if (data) {
-        setGlucoseData(data); // Store data in state
-      }
-    };
-    fetchGlucoseData();
-  }, []);
+  const glucoseData = profile.glucoseTrends
   
-
   return (
     <div className={`rounded-lg shadow-md overflow-hidden ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
       <div className={`px-6 py-4 ${darkMode ? 'bg-gray-700' : 'bg-blue-500'} text-white`}>

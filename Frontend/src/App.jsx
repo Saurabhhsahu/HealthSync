@@ -8,7 +8,6 @@ import { useUser } from './context/userContext';
 
 function App() {
   const { token } = useUser();
-  console.log(token);
 
   return (
     <Routes>

@@ -1,11 +1,9 @@
 import React from "react";
+import { useUser } from "../../context/userContext";
 
 const Insurance = ({ darkMode }) => {
-  const insuranceData = {
-    provider: "MediCare Health",
-    policyNumber: "MC-123456789",
-    expiryDate: "2025-06-30",
-  };
+  const {profile} = useUser();
+  const insuranceData = profile?.insurance?.[0] || []
 
   const today = new Date();
   const expiry = new Date(insuranceData.expiryDate);
