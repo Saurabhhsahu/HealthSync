@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState,useEffect} from 'react';
+import {useUser} from '../../context/userContext.jsx';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 const LabReports = ({ darkMode }) => {
+  const {getProfileDetails} = useUser();
+  const [glucoseData,setGlucoseData] = useState('')
+
   // Sample lab report data
   const labReports = [
     { id: 1, test: "Complete Blood Count", date: "2025-02-15", status: "Normal", file: "cbc_report_feb2025.pdf" },
@@ -10,14 +14,16 @@ const LabReports = ({ darkMode }) => {
   ];
 
   // Glucose trend data
-  const glucoseData = [
-    { month: 'Sep', value: 105 },
-    { month: 'Oct', value: 120 },
-    { month: 'Nov', value: 110 },
-    { month: 'Dec', value: 115 },
-    { month: 'Jan', value: 108 },
-    { month: 'Feb', value: 125 },
-  ];
+  useEffect(() => {
+    const fetchGlucoseData = async () => {
+      const data = await getProfileDetails("glucoseTrends");
+      if (data) {
+        setGlucoseData(data); // Store data in state
+      }
+    };
+    fetchGlucoseData();
+  }, []);
+  
 
   return (
     <div className={`rounded-lg shadow-md overflow-hidden ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>

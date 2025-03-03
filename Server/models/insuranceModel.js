@@ -2,6 +2,10 @@ import mongoose from 'mongoose';
 
 const insuranceSchema = new mongoose.Schema(
     {
+        userId:{
+            type: String,
+            required:true
+        },
         provider: {
             type: String,
             required: true

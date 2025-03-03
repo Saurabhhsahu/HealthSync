@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const medicalRecordSchema = new mongoose.Schema({
+    userId:{
+        type: String,
+        required:true
+    },
     conditions: [
         {
             name: { 

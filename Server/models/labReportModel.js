@@ -2,6 +2,10 @@ import mongoose from 'mongoose';
 
 const labReportSceham = new mongoose.Schema(
     {
+        userId:{
+            type: String,
+            required:true
+        },
         test: {
             type: String,
             required: true,

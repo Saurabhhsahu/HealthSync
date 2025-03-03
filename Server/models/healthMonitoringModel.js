@@ -2,6 +2,10 @@ import mongoose from 'mongoose'
 
 const healthMonitoringSchema = new mongoose.Schema(
     {
+        userId:{
+            type: String,
+            required:true
+        },
         date:{
             type: Date,
             required: true

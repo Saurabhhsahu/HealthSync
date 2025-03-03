@@ -1,51 +1,47 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-    id: { 
-        type: String, 
-        required: true, 
-        unique: true 
+    name: {
+        type: String,
+        required: true
     },
-    name: { 
-        type: String, 
-        required: true 
+    age: {
+        type: Number,
+        required: true
     },
-    age: { 
-        type: Number, 
-        required: true 
+    gender: {
+        type: String,
+        required: true
     },
-    gender: { 
-        type: String, 
-        required: true 
+    bloodGroup: {
+        type: String,
+        required: true
     },
-    bloodGroup: { 
-        type: String, 
-        required: true 
+    contact: {
+        type: String,
+        required: true
     },
-    contact: { 
-        type: String, 
-        required: true 
+    email: {
+        type: String,
+        required: true,
+        unique: true
     },
-    email: { 
-        type: String, 
-        required: true, 
-        unique: true 
+    password: {
+        type: String,
+        required: true
     },
     emergencyContact: {
-        name: { 
-            type: String, 
-            required: true 
+        name: {
+            type: String
         },
-        relation: { 
-            type: String, 
-            required: true 
+        relation: {
+            type: String
         },
-        phone: { 
-            type: String, 
-            required: true 
+        phone: {
+            type: String,
         }
     },
-    profileImage: { 
+    profileImage: {
         type: String,
     }
 }, { timestamps: true });
