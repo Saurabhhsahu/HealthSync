@@ -10,12 +10,15 @@ const Insurance = ({ darkMode }) => {
   const isExpired = today > expiry;
 
   return (
-    <div className={`rounded-lg shadow-md overflow-hidden ${darkMode ? "bg-gray-800" : "bg-white"}`}>
-      <div className={`px-6 py-4 ${darkMode ? "bg-gray-700" : "bg-blue-500"} text-white`}>
-        <h2 className="text-xl font-semibold">Insurance Details</h2>
+    <div className={`px-6 py-4 rounded-lg shadow-md overflow-hidden ${darkMode ? "bg-gray-800" : "bg-white"}`}>
+      <div className={`flex justify-between items-center ${darkMode ? 'bg-gray-700 text-white' : 'bg-white text-black'}`}>
+        <div>
+          <h2 className="text-2xl font-semibold">Insurance</h2>
+          <p className='text-gray-500'>get life time insurance with us</p>
+        </div>
       </div>
 
-      <div className="p-4 space-y-2">
+      <div className="mt-4 p-5 space-y-2 border border-gray-200 rounded-lg">
         <p className="text-lg font-semibold">{insuranceData.provider}</p>
         <p className="text-sm text-gray-600">Policy No: {insuranceData.policyNumber}</p>
         <p className={`text-sm font-medium ${isExpired ? "text-red-600" : "text-green-600"}`}>

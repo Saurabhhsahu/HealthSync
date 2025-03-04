@@ -7,12 +7,18 @@ const Medications = ({ darkMode }) => {
   const medications = profile?.medications || []
 
   return (
-    <div className={`rounded-lg shadow-md overflow-hidden ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
-      <div className={`px-6 py-4 ${darkMode ? 'bg-gray-700' : 'bg-blue-500'} text-white`}>
-        <h2 className="text-xl font-semibold">Medications & Prescriptions</h2>
+    <div className={`px-6 py-4 rounded-lg shadow-md overflow-hidden ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
+      <div className={`flex justify-between items-center ${darkMode ? 'bg-gray-700 text-white' : 'bg-white text-black'}`}>
+        <div>
+          <h2 className="text-2xl font-semibold">Medications & Prescriptions</h2>
+          <p className='text-gray-500'>Current medications and refill status</p>
+        </div>
+        <button className={`${darkMode ? 'bg-white text-black' : 'bg-black text-white'} px-4 py-2 rounded-lg font-bold`}>
+          Request All
+        </button>
       </div>
       
-      <div className="p-4">
+      <div className="mt-4">
         <div className="space-y-4">
           {medications.map((medication) => {
             // Calculate days until refill
@@ -23,11 +29,11 @@ const Medications = ({ darkMode }) => {
             return (
               <div 
                 key={medication.id} 
-                className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-50'}`}
+                className={`p-5 rounded-lg ${darkMode ? 'bg-black text-white' : 'bg-white '} border border-gray-200`}
               >
                 <div className="flex justify-between items-start">
                   <div>
-                    <h3 className="font-medium">{medication.name} {medication.dosage}</h3>
+                    <h3 className="font-bold">{medication.name} {medication.dosage}</h3>
                     <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                       {medication.frequency}
                     </p>
@@ -58,15 +64,15 @@ const Medications = ({ darkMode }) => {
                   </p>
                 </div>
                 
-                <div className="mt-3 flex space-x-2">
-                  <button className={`px-3 py-1 text-sm font-medium rounded ${
-                    darkMode ? 'bg-blue-600 hover:bg-blue-700' : 'bg-blue-500 hover:bg-blue-600'
-                  } text-white`}>
+                <div className="w-full mt-3 flex space-x-2">
+                  <button className={`w-1/2 px-3 py-2 text-sm font-bold rounded cursor-pointer ${
+                    darkMode ? 'bg-blue-600 hover:bg-blue-700' : 'bg-white border border-gray-200 hover:bg-gray-100'
+                  } `}>
                     Set Reminder
                   </button>
-                  <button className={`px-3 py-1 text-sm font-medium rounded ${
-                    darkMode ? 'bg-gray-600 hover:bg-gray-700' : 'bg-gray-200 hover:bg-gray-300'
-                  } ${darkMode ? 'text-white' : 'text-gray-700'}`}>
+                  <button className={`w-1/2 px-3 py-2 text-sm font-bold rounded cursor-pointer ${
+                    darkMode ? 'bg-blue-600 hover:bg-blue-700' : 'bg-white border border-gray-200 hover:bg-gray-100'
+                  } `}>
                     Request Refill
                   </button>
                 </div>

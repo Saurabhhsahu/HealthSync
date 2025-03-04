@@ -2,11 +2,14 @@ import React from 'react';
 
 const PatientProfile = ({ patient, darkMode }) => {
   return (
-    <div className={`rounded-lg shadow-md overflow-hidden ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
-      <div className={`px-6 py-4 ${darkMode ? 'bg-gray-700' : 'bg-blue-500'} text-white`}>
-        <h2 className="text-xl font-semibold">Patient Profile</h2>
+    <div className={`px-6 py-4 rounded-lg shadow-md overflow-hidden ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
+      <div className={`flex justify-between items-center ${darkMode ? 'bg-gray-700 text-white' : 'bg-white text-black'}`}>
+        <div>
+          <h2 className="text-2xl font-semibold">Medical Records & History</h2>
+          <p className='text-gray-500'>Conditions, allergies and surgeries</p>
+        </div>
       </div>
-      <div className="p-6">
+      <div className="mt-4">
         <div className="flex items-center mb-6">
           <img
             src={patient.profileImage}
