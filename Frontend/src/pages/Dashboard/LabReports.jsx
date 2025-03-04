@@ -18,7 +18,7 @@ const LabReports = ({ darkMode }) => {
 
   return (
     <div
-      className={`px-6 py-4 rounded-lg shadow-md overflow-hidden ${
+      className={`overflow-y-auto h-full px-6 py-4 rounded-lg shadow-md overflow-hidden ${
         darkMode ? "bg-gray-800" : "bg-white"
       }`}
     >

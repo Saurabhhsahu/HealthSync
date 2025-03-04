@@ -10,7 +10,7 @@ import ThemeToggle from './ThemeToggle';
 
 const PatientDashboard = () => {
   const [darkMode, setDarkMode] = useState(false);
-  
+
   // Sample patient data
   const patientData = {
     id: "PT-10456",
@@ -35,25 +35,36 @@ const PatientDashboard = () => {
           <h1 className="text-2xl font-bold">Patient Dashboard</h1>
           <ThemeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
         </div>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Left Column */}
-          <div className="lg:col-span-1 space-y-6">
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* First Row */}
+          <div className="col-span-1 h-100">
             <PatientProfile patient={patientData} darkMode={darkMode} />
+          </div>
+          <div className="col-span-2 h-100">
+            <Appointments darkMode={darkMode} />
+          </div>
+
+          {/* Second Row */}
+          <div className="col-span-1 h-100">
             <MedicalRecords darkMode={darkMode} />
+          </div>
+          <div className="col-span-1 h-100">
+            <LabReports darkMode={darkMode} />
+          </div>
+          <div className="col-span-1 h-100">
+            <Medications darkMode={darkMode} />
+          </div>
+
+          {/* Third Row */}
+          <div className="col-span-1 h-100">
             <Insurance darkMode={darkMode} />
           </div>
-          
-          {/* Right Column (2/3 width on large screens) */}
-          <div className="lg:col-span-2 space-y-6">
-            <Appointments darkMode={darkMode} />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <LabReports darkMode={darkMode} />
-              <Medications darkMode={darkMode} />
-            </div>
+          <div className="col-span-2 h-100">
             <HealthMonitoring darkMode={darkMode} />
           </div>
         </div>
+
       </div>
     </div>
   );

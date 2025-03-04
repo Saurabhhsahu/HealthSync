@@ -20,7 +20,7 @@ const MedicalRecords = ({ darkMode }) => {
   };
 
   return (
-    <div className={`px-6 py-4 rounded-lg shadow-md overflow-hidden ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
+    <div className={`overflow-y-auto h-full px-6 py-4 rounded-lg shadow-md overflow-hidden ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
       <div className={`flex justify-between items-center ${darkMode ? 'bg-gray-700 text-white' : 'bg-white text-black'}`}>
         <div>
           <h2 className="text-2xl font-semibold">Medical Records & History</h2>

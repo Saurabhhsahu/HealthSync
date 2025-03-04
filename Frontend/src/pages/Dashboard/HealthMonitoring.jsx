@@ -76,7 +76,7 @@ const HealthMonitoring = ({ darkMode = false }) => {
   );
 
   return (
-    <div className={`rounded-lg shadow-md p-4 ${darkMode ? 'bg-gray-900' : 'bg-white'}`}>
+    <div className={`overflow-y-auto h-full rounded-lg shadow-md p-4 ${darkMode ? 'bg-gray-900' : 'bg-white'}`}>
       <div className="flex justify-between items-center mb-4">
         <div>
 
