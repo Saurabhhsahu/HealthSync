@@ -13,7 +13,7 @@ const Appointments = ({ darkMode }) => {
   const pastAppointments = appointments.filter(appointment => appointment.prescription);
 
   return (
-    <div className={`overflow-y-auto px-6 h-full py-4 rounded-lg shadow-md overflow-hidden ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
+    <div className={` px-6 w-full h-full py-4 rounded-lg shadow-md overflow-hidden ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
       <div className={`flex justify-between items-center ${darkMode ? 'bg-gray-700 text-white' : 'bg-white text-black'}`}>
         <div>
           <h2 className="text-2xl font-semibold">Appointments & Consultations</h2>
@@ -46,13 +46,13 @@ const Appointments = ({ darkMode }) => {
 
 
 
-      <div className='mt-4'>
+      <div className="my-4 h-80 overflow-y-auto">
         {activeTab === 'upcoming' && (
-          <div className="space-y-4">
+          <div className="space-y-4 h-full">
             {upcomingAppointments.length > 0 ? (
               upcomingAppointments.map((appointment) => (
-                <div key={appointment.id} className={`p-5 rounded-lg border shadow-sm ${darkMode ? 'border-gray-700 bg-black' : 'border-gray-200 bg-white'}`}>
-                  <div className="flex justify-between items-start">
+                <div key={appointment.id} className={` p-5 rounded-lg border shadow-sm ${darkMode ? 'border-gray-700 bg-black' : 'border-gray-200 bg-white'}`}>
+                  <div className=" flex justify-between items-start">
                     {/* Doctor Details */}
                     <div>
                       <h3 className="font-semibold text-xl">{appointment.doctor}</h3>

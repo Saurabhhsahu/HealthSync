@@ -2,53 +2,55 @@ import React from 'react';
 
 const PatientProfile = ({ patient, darkMode }) => {
   return (
-    <div className={`overflow-y-auto h-full px-6 py-4 rounded-lg shadow-md overflow-hidden ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
-      <div className={`flex justify-between items-center ${darkMode ? 'bg-gray-700 text-white' : 'bg-white text-black'}`}>
+    <div className={`overflow-y-auto h-full px-6 py-4 rounded-lg shadow-md ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
+      <div className={`flex flex-col sm:flex-row justify-between items-start sm:items-center ${darkMode ? 'bg-gray-700 text-white' : 'bg-white text-black'}`}>
         <div>
-          <h2 className="text-2xl font-semibold">Medical Records & History</h2>
-          <p className='text-gray-500'>Conditions, allergies and surgeries</p>
+          <h2 className="text-xl sm:text-2xl font-semibold">Medical Records & History</h2>
+          <p className='text-gray-500 text-sm sm:text-base'>Conditions, allergies, and surgeries</p>
         </div>
       </div>
+      
       <div className="mt-4">
-        <div className="flex items-center mb-6">
+        <div className="flex flex-col sm:flex-row items-center mb-6">
           <img
             src={patient.profileImage}
             alt={patient.name}
-            className="w-20 h-20 rounded-full mr-4 object-cover"
+            className="w-20 h-20 sm:w-24 sm:h-24 rounded-full mb-4 sm:mb-0 sm:mr-4 object-cover"
           />
-          <div>
+          <div className="text-center sm:text-left">
             <h3 className="text-lg font-semibold">{patient.name}</h3>
             <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
               ID: {patient.id}
             </p>
           </div>
         </div>
-        
-        <div className="grid grid-cols-2 gap-4">
+
+        {/* Patient Info Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <p className={`text-sm font-medium ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Age</p>
-            <p>{patient.age} years</p>
-          </div>
-          <div>
-            <p className={`text-sm font-medium ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Gender</p>
-            <p>{patient.gender}</p>
+            <p className={`text-xs sm:text-sm font-medium ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Age</p>
+            <p className="text-sm sm:text-base">{patient.age} years</p>
           </div>
           <div>
-            <p className={`text-sm font-medium ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Blood Group</p>
-            <p>{patient.bloodGroup}</p>
+            <p className={`text-xs sm:text-sm font-medium ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Gender</p>
+            <p className="text-sm sm:text-base">{patient.gender}</p>
           </div>
           <div>
-            <p className={`text-sm font-medium ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Contact</p>
-            <p>{patient.contact}</p>
+            <p className={`text-xs sm:text-sm font-medium ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Blood Group</p>
+            <p className="text-sm sm:text-base">{patient.bloodGroup}</p>
           </div>
-          <div className="col-span-2">
-            <p className={`text-sm font-medium ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Email</p>
-            <p>{patient.email}</p>
+          <div>
+            <p className={`text-xs sm:text-sm font-medium ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Contact</p>
+            <p className="text-sm sm:text-base">{patient.contact}</p>
           </div>
-          <div className="col-span-2">
-            <p className={`text-sm font-medium ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Emergency Contact</p>
-            <p>{patient.emergencyContact.name} ({patient.emergencyContact.relation})</p>
-            <p>{patient.emergencyContact.phone}</p>
+          <div className="col-span-1 sm:col-span-2">
+            <p className={`text-xs sm:text-sm font-medium ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Email</p>
+            <p className="text-sm sm:text-base">{patient.email}</p>
+          </div>
+          <div className="col-span-1 sm:col-span-2">
+            <p className={`text-xs sm:text-sm font-medium ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Emergency Contact</p>
+            <p className="text-sm sm:text-base">{patient.emergencyContact.name} ({patient.emergencyContact.relation})</p>
+            <p className="text-sm sm:text-base">{patient.emergencyContact.phone}</p>
           </div>
         </div>
       </div>

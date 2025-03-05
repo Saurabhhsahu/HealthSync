@@ -36,12 +36,13 @@ const PatientDashboard = () => {
           <ThemeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="flex flex-col lg:grid lg:grid-cols-3 gap-6">
+
           {/* First Row */}
-          <div className="col-span-1 h-100">
+          <div className="col-span-1">
             <PatientProfile patient={patientData} darkMode={darkMode} />
           </div>
-          <div className="col-span-2 h-100">
+          <div className="col-span-2 h-120">
             <Appointments darkMode={darkMode} />
           </div>
 
@@ -57,10 +58,10 @@ const PatientDashboard = () => {
           </div>
 
           {/* Third Row */}
-          <div className="col-span-1 h-100">
+          <div className="col-span-1">
             <Insurance darkMode={darkMode} />
           </div>
-          <div className="col-span-2 h-100">
+          <div className="col-span-2">
             <HealthMonitoring darkMode={darkMode} />
           </div>
         </div>
