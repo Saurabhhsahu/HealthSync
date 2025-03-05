@@ -4,14 +4,14 @@ import './index.css'
 import App from './App.jsx'
 
 import { BrowserRouter } from 'react-router-dom'
-import {UserProvider} from './context/userContext.jsx'
+import { UserProvider } from './context/userContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <UserProvider>
-      <BrowserRouter>
+    <BrowserRouter>  {/* ✅ Wrap the whole app in BrowserRouter */}
+      <UserProvider>  {/* ✅ Now inside Router, so useNavigate() will work */}
         <App />
-      </BrowserRouter>
-    </UserProvider>
+      </UserProvider>
+    </BrowserRouter>
   </StrictMode>,
 )

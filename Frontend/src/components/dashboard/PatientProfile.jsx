@@ -1,6 +1,27 @@
 import React from 'react';
+import { useUser } from '../../context/userContext';
 
-const PatientProfile = ({ patient, darkMode }) => {
+const PatientProfile = ({darkMode }) => {
+  const {profile} = useUser();
+
+  const patient = profile?.user?.[0] || {
+    "name": "",
+    "age": null,
+    "gender": "",
+    "bloodGroup": "",
+    "contact": "",
+    "email": "",
+    "password": "",
+    "emergencyContact": {
+        "name": "",
+        "relation": "",
+        "phone": ""
+    },
+    "profileImage": ""
+}
+
+  // const patient
+
   return (
     <div className={`overflow-y-auto h-full px-6 py-4 rounded-lg shadow-md ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
       <div className={`flex flex-col sm:flex-row justify-between items-start sm:items-center ${darkMode ? 'bg-gray-700 text-white' : 'bg-white text-black'}`}>
@@ -19,9 +40,6 @@ const PatientProfile = ({ patient, darkMode }) => {
           />
           <div className="text-center sm:text-left">
             <h3 className="text-lg font-semibold">{patient.name}</h3>
-            <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-              ID: {patient.id}
-            </p>
           </div>
         </div>
 

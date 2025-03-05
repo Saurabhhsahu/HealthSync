@@ -1,27 +1,29 @@
 import React from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 
-import Dashboard from './pages/Dashboard/PatientDashboard';
-import Auth from './pages/Auth';
-
+import Home from './pages/Home.jsx';
+import Auth from './pages/AuthPage.jsx';
 import { useUser } from './context/userContext';
 
 function App() {
   const { token } = useUser();
+  console.log("token:", token);
 
   return (
     <Routes>
+      {/* If not authenticated, only allow access to /auth */}
       {!token ? (
-        <Route path="*" element={<Navigate to="/auth" replace />} />
+        <>
+          <Route path="/auth" element={<Auth />} />
+          <Route path="*" element={<Navigate to="/auth" replace />} />
+        </>
       ) : (
         <>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="*" element={<Navigate to="/dashboard" replace />} />
+          {/* Authenticated Routes */}
+          <Route path="/*" element={<Home />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </>
       )}
-      
-      {/* Explicitly define Auth route */}
-      <Route path="/auth" element={<Auth />} />
     </Routes>
   );
 }

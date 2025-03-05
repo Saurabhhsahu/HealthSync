@@ -11,6 +11,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 const modelMap = {
+    user: User,
     appointments: Appointment,
     glucoseTrends: GlucoseTrend,
     healthMonitorings: HealthMonitoring,
@@ -24,7 +25,15 @@ const signup = async (req, res) => {
     try {
         const { name, age, gender, bloodGroup, contact, email, password, emergencyContact, profileImage } = req.body;
 
-        // Check if user already exists
+        // Validate required fields
+        if (!name || !age || !gender || !bloodGroup || !contact || !email || !password) {
+            return res.status(400).json({
+                success: false,
+                message: "All fields are required",
+            });
+        }
+
+        // Check if the user already exists
         const existingUser = await User.findOne({ email });
         if (existingUser) {
             return res.status(400).json({
@@ -34,11 +43,10 @@ const signup = async (req, res) => {
         }
 
         // Hash password
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(password, salt);
+        const hashedPassword = await bcrypt.hash(password, 10);
 
         // Create new user
-        const newUser = await User.create({
+        const newUser = new User({
             name,
             age,
             gender,
@@ -47,8 +55,10 @@ const signup = async (req, res) => {
             email,
             password: hashedPassword,
             emergencyContact,
-            profileImage
+            profileImage,
         });
+
+        await newUser.save();
 
         // Generate JWT Token
         const token = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET, {
@@ -75,10 +85,69 @@ const signup = async (req, res) => {
     }
 };
 
+const signin = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        console.log(email,password);
+        
+        // Check if email and password are provided
+        if (!email || !password) {
+            return res.status(400).json({
+                success: false,
+                message: "Email and password are required",
+            });
+        }
+
+        // Find user by email
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(401).json({
+                success: false,
+                message: "Invalid credentials",
+            });
+        }
+        
+        // Compare passwords
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(401).json({
+                success: false,
+                message: "Invalid credentials",
+            });
+        }
+
+        // Generate JWT Token
+        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+            expiresIn: "7d",
+        });
+        console.log(token);
+
+        return res.status(200).json({
+            success: true,
+            message: "Signin successful",
+            token,
+            user: {
+                id: user._id,
+                name: user.name,
+                email: user.email,
+            },
+        });
+
+    } catch (err) {
+        console.error("Error in signin:", err);
+        res.status(500).json({
+            success: false,
+            message: "Internal server error",
+        });
+    }
+};
+
 const getUserDetail = async (req, res) => {
     try {
-        const { userId, detailType } = req.body; // Extract userId & detailType
-
+        const userId = req.userId
+        console.log(userId);
+        
+        const {detailType } = req.body; // Extract userId & detailType
         if (!userId || !detailType) {
             return res.status(400).json({
                 success: false,
@@ -87,16 +156,27 @@ const getUserDetail = async (req, res) => {
         }
 
         const Model = modelMap[detailType];
-
+        
         if (!Model) {
             return res.status(400).json({
                 success: false,
                 message: "Invalid detail type",
             });
         }
+        
+        let key
+        if(detailType === 'user'){
+            key = "_id"
+        }   
+        else{
+            key = "userId"
+        } 
+        // console.log("key : ",key);
 
         // Fetch data based on userId
-        const data = await Model.find({ userId });
+        const data = await Model.find({ [key]:userId });
+        
+        if(detailType === "user")   console.log("user : ",data,userId);
 
         return res.status(200).json({
             success: true,
@@ -149,4 +229,4 @@ const storeUserDetail = async (req, res) => {
     }
 };
 
-export {getUserDetail,signup,storeUserDetail};
+export {getUserDetail,signup,signin,storeUserDetail};

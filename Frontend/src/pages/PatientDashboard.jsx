@@ -1,32 +1,17 @@
 import React, { useState } from 'react';
-import PatientProfile from './PatientProfile';
-import MedicalRecords from './MedicalRecords';
-import Appointments from './Appointments';
-import LabReports from './LabReports';
-import Medications from './Medications';
-import HealthMonitoring from './HealthMonitoring';
-import Insurance from './Insurance';
-import ThemeToggle from './ThemeToggle';
+import PatientProfile from '../components/dashboard/PatientProfile.jsx';
+import MedicalRecords from '../components/dashboard/MedicalRecords.jsx';
+import Appointments from '../components/dashboard/Appointments.jsx';
+import LabReports from '../components/dashboard/LabReports.jsx';
+import Medications from '../components/dashboard/Medications.jsx';
+import HealthMonitoring from '../components/dashboard/HealthMonitoring.jsx';
+import Insurance from '../components/dashboard/Insurance.jsx';
+import ThemeToggle from '../components/dashboard/ThemeToggle.jsx';
 
 const PatientDashboard = () => {
   const [darkMode, setDarkMode] = useState(false);
 
   // Sample patient data
-  const patientData = {
-    id: "PT-10456",
-    name: "John Doe",
-    age: 45,
-    gender: "Male",
-    bloodGroup: "O+",
-    contact: "+1 (555) 123-4567",
-    email: "john.doe@example.com",
-    emergencyContact: {
-      name: "Jane Doe",
-      relation: "Spouse",
-      phone: "+1 (555) 987-6543"
-    },
-    profileImage: "/api/placeholder/120/120"
-  };
 
   return (
     <div className={`min-h-screen ${darkMode ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-800'}`}>
@@ -40,7 +25,7 @@ const PatientDashboard = () => {
 
           {/* First Row */}
           <div className="col-span-1">
-            <PatientProfile patient={patientData} darkMode={darkMode} />
+            <PatientProfile darkMode={darkMode} />
           </div>
           <div className="col-span-2 h-120">
             <Appointments darkMode={darkMode} />
