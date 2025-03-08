@@ -26,7 +26,7 @@ const PatientProfile = ({darkMode }) => {
     <div className={`overflow-y-auto h-full px-6 py-4 rounded-lg shadow-md ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
       <div className={`flex flex-col sm:flex-row justify-between items-start sm:items-center ${darkMode ? 'bg-gray-700 text-white' : 'bg-white text-black'}`}>
         <div>
-          <h2 className="text-xl sm:text-2xl font-semibold">Medical Records & History</h2>
+          <h2 className="text-xl sm:text-2xl font-semibold">My Profile</h2>
           <p className='text-gray-500 text-sm sm:text-base'>Conditions, allergies, and surgeries</p>
         </div>
       </div>
